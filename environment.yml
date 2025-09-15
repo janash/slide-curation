@@ -17,6 +17,8 @@ dependencies:
   - pandas
   - numpy
   - reportlab
+  - tenacity
+  - imagehash
   - ripgrep            # used in docs/commands (rg)
   - pip:
       - openai
