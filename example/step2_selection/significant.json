@@ -1,0 +1,569 @@
+{
+  "model": "gpt-4o",
+  "threshold": 1.0,
+  "policy": "code",
+  "window": 8,
+  "stride": 6,
+  "results": [
+    {
+      "page": "0001_0:00:00.png",
+      "score": 1.0,
+      "keep": true,
+      "reason": "bootstrap first keep",
+      "concept": "intro"
+    },
+    {
+      "page": "0002_0:00:13.png",
+      "score": 0.2,
+      "keep": false,
+      "reason": "The current slide shows only a minor formatting change with no new concepts or results. The code and terminal output are essentially the same as the last kept slide.",
+      "concept": "minor code formatting"
+    },
+    {
+      "page": "0003_0:00:15.png",
+      "score": 0.2,
+      "keep": false,
+      "reason": "The current slide shows a minor change with the cursor in insert mode, indicating active typing. No new concepts or significant changes are visible compared to the last kept slide.",
+      "concept": "minor code edit"
+    },
+    {
+      "page": "0004_0:00:19.png",
+      "score": 0.3,
+      "keep": false,
+      "reason": "The only change is the addition of a comment ('// mutator') which does not add significant educational value or new concepts beyond the last kept slide.",
+      "concept": "minor comment addition"
+    },
+    {
+      "page": "0005_0:00:21.png",
+      "score": 0.3,
+      "keep": false,
+      "reason": "The only change is the addition of a comment ('// mutator'), which does not add significant educational value or new information beyond the last kept slide.",
+      "concept": "minor comment addition"
+    },
+    {
+      "page": "0006_0:01:52.png",
+      "score": 0.3,
+      "keep": false,
+      "reason": "The current slide shows a minor change in comments (from 'Accessors' to 'mutator') without significant new educational content or code changes. The terminal output remains the same as the last kept slide.",
+      "concept": "minor code comment change"
+    },
+    {
+      "page": "0007_0:02:11.png",
+      "score": 0.2,
+      "keep": false,
+      "reason": "The current slide shows partial typing of a constructor, which is not a complete or meaningful state. It does not introduce new concepts or results beyond the last kept slide.",
+      "concept": "partial constructor typing"
+    },
+    {
+      "page": "0008_0:02:13.png",
+      "score": 0.5,
+      "keep": false,
+      "reason": "The constructor 'Weather()' is being typed but is incomplete. No new complete concept or result is presented compared to the last kept slide.",
+      "concept": "constructor definition"
+    },
+    {
+      "page": "0009_0:02:47.png",
+      "score": 0.3,
+      "keep": false,
+      "reason": "The constructor is being partially typed and is incomplete. It does not provide a complete or new educational concept beyond the last kept slide.",
+      "concept": "constructor definition"
+    },
+    {
+      "page": "0010_0:02:55.png",
+      "score": 0.3,
+      "keep": false,
+      "reason": "The constructor is being typed and is incomplete. It doesn't add significant educational value beyond the last kept slide.",
+      "concept": "constructor definition"
+    },
+    {
+      "page": "0011_0:02:59.png",
+      "score": 0.8,
+      "keep": true,
+      "reason": "The slide shows the beginning of a constructor definition for the Weather class, which is a new concept not present in the last kept slide. This introduces the parameters for the constructor, which is an important step in class design.",
+      "concept": "Constructor definition in progress"
+    },
+    {
+      "page": "0012_0:03:01.png",
+      "score": 0.2,
+      "keep": false,
+      "reason": "The current slide shows a minor addition to the constructor parameter list, which is not a significant change from the last kept slide. It does not introduce a new concept or complete a logical code block.",
+      "concept": "Constructor definition in progress"
+    },
+    {
+      "page": "0013_0:03:04.png",
+      "score": 0.3,
+      "keep": false,
+      "reason": "The current slide shows minor changes in the constructor definition, which is still incomplete. It does not introduce significant new information or a complete concept compared to the last kept slide.",
+      "concept": "Constructor definition in progress"
+    },
+    {
+      "page": "0014_0:03:06.png",
+      "score": 0.3,
+      "keep": false,
+      "reason": "The current slide shows minor additions to the constructor definition, which is still incomplete. It does not introduce a new concept or significant change from the last kept slide.",
+      "concept": "Constructor definition in progress"
+    },
+    {
+      "page": "0015_0:03:08.png",
+      "score": 0.4,
+      "keep": false,
+      "reason": "The constructor definition is still incomplete and similar to the previous frame. No significant new information or results are presented.",
+      "concept": "Constructor definition in progress"
+    },
+    {
+      "page": "0016_0:03:10.png",
+      "score": 0.9,
+      "keep": true,
+      "reason": "The constructor definition is now complete with parameters, and the print_weather function is partially implemented, showing significant progress in the code structure.",
+      "concept": "Constructor definition completion and print_weather function"
+    },
+    {
+      "page": "0017_0:03:25.png",
+      "score": 0.1,
+      "keep": false,
+      "reason": "The current slide shows the constructor definition in progress, which has already been captured in the last kept slide. There is no new information or significant change in the code or terminal output.",
+      "concept": "Constructor definition in progress"
+    },
+    {
+      "page": "0018_0:03:39.png",
+      "score": 0.2,
+      "keep": false,
+      "reason": "The current slide shows partial typing within the constructor, which does not add significant educational value beyond the last kept slide. It is an incomplete state without new concepts or results.",
+      "concept": "partial constructor implementation"
+    },
+    {
+      "page": "0019_0:04:03.png",
+      "score": 0.9,
+      "keep": true,
+      "reason": "The constructor definition is now complete with assignments for all parameters, providing a logical stopping point and educational value by showing the complete setup of the class.",
+      "concept": "Constructor definition completion"
+    },
+    {
+      "page": "0020_0:04:06.png",
+      "score": 0.2,
+      "keep": false,
+      "reason": "The current slide shows partial typing of the 'print_weather' function, which does not introduce new concepts or complete code. It is similar to the last kept slide and does not add educational value.",
+      "concept": "partial typing of print_weather function"
+    },
+    {
+      "page": "0021_0:04:08.png",
+      "score": 0.8,
+      "keep": true,
+      "reason": "The current slide shows the 'print_weather' function with additional commented lines for relative humidity, dew point, and description. This provides educational value by demonstrating how to selectively output different attributes of the 'Weather' class.",
+      "concept": "print_weather function with commented lines"
+    },
+    {
+      "page": "0022_0:04:10.png",
+      "score": 0.8,
+      "keep": true,
+      "reason": "The current slide shows the implementation of the main function, including the use of the set_temperature method. This is a significant addition to the code, demonstrating how the Weather class is instantiated and used, which is educationally valuable.",
+      "concept": "main function implementation with set_temperature usage"
+    },
+    {
+      "page": "0023_0:04:16.png",
+      "score": 0.1,
+      "keep": false,
+      "reason": "The current frame shows a minor edit in progress with no significant change or new information compared to the last kept frame. It does not introduce any new concepts or results.",
+      "concept": "minor edit in progress"
+    },
+    {
+      "page": "0024_0:04:32.png",
+      "score": 0.8,
+      "keep": true,
+      "reason": "The current slide shows a significant change in the main function where the Weather object is instantiated with parameters, adding educational value by demonstrating object initialization with arguments.",
+      "concept": "main function implementation with constructor parameters"
+    },
+    {
+      "page": "0025_0:04:36.png",
+      "score": 0.3,
+      "keep": false,
+      "reason": "The only change is a minor comment addition in the code, which does not introduce new concepts or significant educational value beyond the last kept slide.",
+      "concept": "minor code comment change"
+    },
+    {
+      "page": "0026_0:04:42.png",
+      "score": 0.8,
+      "keep": true,
+      "reason": "The current slide shows the addition of the 'print_weather(now);' line in the main function, which is a significant change as it demonstrates the usage of the print_weather function. This adds educational value by showing how the function is called and integrated into the program.",
+      "concept": "main function implementation with print_weather usage"
+    },
+    {
+      "page": "0027_0:04:49.png",
+      "score": 0.8,
+      "keep": true,
+      "reason": "This frame shows the correction of errors related to private member access and the resulting output, which is educationally valuable for understanding error resolution and program execution.",
+      "concept": "Error correction and output verification"
+    },
+    {
+      "page": "0028_0:04:51.png",
+      "score": 0.1,
+      "keep": false,
+      "reason": "The current frame shows minor typing in the terminal without any new output or significant code changes. It does not add educational value beyond the last kept frame.",
+      "concept": "Minor terminal command typing"
+    },
+    {
+      "page": "0029_0:04:56.png",
+      "score": 0.2,
+      "keep": false,
+      "reason": "The current slide is very similar to the last kept slide with no significant changes in code or terminal output. It does not introduce new concepts or results.",
+      "concept": "Error correction and output verification"
+    },
+    {
+      "page": "0030_0:05:05.png",
+      "score": 0.2,
+      "keep": false,
+      "reason": "The current frame shows a minor text selection change without introducing new concepts or significant code changes. The terminal output is similar to the last kept frame, providing no additional educational value.",
+      "concept": "Minor code selection"
+    },
+    {
+      "page": "0031_0:05:11.png",
+      "score": 0.2,
+      "keep": false,
+      "reason": "The current slide is very similar to the last kept slide, showing the same code and terminal output. There are no new concepts or significant changes introduced.",
+      "concept": "Error correction and output verification"
+    },
+    {
+      "page": "0032_0:05:44.png",
+      "score": 0.2,
+      "keep": false,
+      "reason": "The current slide shows no significant changes or new information compared to the last kept slide. The code and terminal output are essentially the same, with no new educational content or results.",
+      "concept": "N/A"
+    },
+    {
+      "page": "0033_0:05:47.png",
+      "score": 0.8,
+      "keep": true,
+      "reason": "The current slide shows the completion of the main function with the addition of a return statement, which is a logical stopping point and adds educational value by demonstrating proper function termination.",
+      "concept": "main function completion with return statement"
+    },
+    {
+      "page": "0034_0:05:49.png",
+      "score": 0.8,
+      "keep": true,
+      "reason": "The current slide shows the implementation of the print_weather function using the get_temperature accessor, which is a significant change from the last kept slide. This demonstrates the use of accessor methods, which is educationally valuable.",
+      "concept": "print_weather function with get_temperature usage"
+    },
+    {
+      "page": "0035_0:05:51.png",
+      "score": 0.1,
+      "keep": false,
+      "reason": "The current frame shows a visual block selection in the code editor, which does not introduce any new concepts or significant changes. It is similar to the last kept frame and does not provide additional educational value.",
+      "concept": "visual block selection"
+    },
+    {
+      "page": "0036_0:05:53.png",
+      "score": 0.2,
+      "keep": false,
+      "reason": "The current slide shows a minor change in the code formatting with no significant new information or educational value added compared to the last kept slide. The terminal output remains the same.",
+      "concept": "Minor code change"
+    },
+    {
+      "page": "0037_0:05:55.png",
+      "score": 0.2,
+      "keep": false,
+      "reason": "The current frame shows a minor change in the code formatting with no significant new content or educational value added compared to the last kept frame.",
+      "concept": "Minor code adjustment"
+    },
+    {
+      "page": "0038_0:05:57.png",
+      "score": 0.3,
+      "keep": false,
+      "reason": "The current slide shows minor changes with the addition of commented lines in the print_weather function, which does not introduce significant new educational content beyond what was already kept.",
+      "concept": "print_weather function with commented lines"
+    },
+    {
+      "page": "0039_0:05:59.png",
+      "score": 0.3,
+      "keep": false,
+      "reason": "The current slide shows minor changes with uncommented lines in the print_weather function, which does not add significant educational value beyond the last kept slide.",
+      "concept": "print_weather function with commented lines"
+    },
+    {
+      "page": "0040_0:06:01.png",
+      "score": 0.2,
+      "keep": false,
+      "reason": "The current frame shows only a minor cursor movement in the code editor without any significant changes or new information. The terminal output remains the same as the last kept frame.",
+      "concept": "Minor cursor movement"
+    },
+    {
+      "page": "0041_0:06:18.png",
+      "score": 0.8,
+      "keep": true,
+      "reason": "The current slide shows a new implementation of a 'print' function, which is a significant addition to the code. This function replaces the previous 'print_weather' function and is important for understanding the code's progression.",
+      "concept": "print function implementation"
+    },
+    {
+      "page": "0042_0:06:21.png",
+      "score": 0.1,
+      "keep": false,
+      "reason": "The current frame shows minor typing in progress with no significant change or new concept introduced. It is similar to the last kept frame and does not add educational value.",
+      "concept": "Minor code editing"
+    },
+    {
+      "page": "0043_0:06:24.png",
+      "score": 0.2,
+      "keep": false,
+      "reason": "The current frame shows a minor edit in progress with no significant change or new concept introduced. The code is not at a logical stopping point, and the terminal output is unchanged from the last kept frame.",
+      "concept": "Minor code edit in progress"
+    },
+    {
+      "page": "0044_0:06:26.png",
+      "score": 0.2,
+      "keep": false,
+      "reason": "The current slide shows a minor change in the code with a cursor position change. It does not introduce new concepts or significant educational value beyond the last kept slide.",
+      "concept": "Minor code change"
+    },
+    {
+      "page": "0045_0:06:30.png",
+      "score": 0.8,
+      "keep": true,
+      "reason": "The print function has been updated to include additional output lines for relative humidity, dew point, and description, which were previously commented out. This change provides a more complete implementation of the print function, enhancing the educational value by showing how to output multiple attributes.",
+      "concept": "print function implementation"
+    },
+    {
+      "page": "0046_0:06:33.png",
+      "score": 0.1,
+      "keep": false,
+      "reason": "The current slide shows a minor typing error being corrected ('thw' to 'this'), which does not add significant educational value or introduce new concepts beyond the last kept slide.",
+      "concept": "Minor typing error correction"
+    },
+    {
+      "page": "0047_0:06:41.png",
+      "score": 0.3,
+      "keep": false,
+      "reason": "The current slide shows a minor change in the code where 'w.' is replaced with 'this->' in the print function. This is a small syntactical adjustment and does not introduce a new concept or significant educational value beyond the last kept slide.",
+      "concept": "Minor code adjustment"
+    },
+    {
+      "page": "0048_0:06:43.png",
+      "score": 0.3,
+      "keep": false,
+      "reason": "The current slide shows minor changes in the 'print' function with 'this->' added to the member variables. This is a minor update and does not introduce a new concept or significant change beyond what was already captured in the last kept slide.",
+      "concept": "print function implementation"
+    },
+    {
+      "page": "0049_0:06:56.png",
+      "score": 0.2,
+      "keep": false,
+      "reason": "The current slide shows a minor edit in the code with a partial typing of 'no' before 'print_weather(now);'. This does not introduce any new concept or significant change from the last kept slide.",
+      "concept": "minor code edit"
+    },
+    {
+      "page": "0050_0:07:01.png",
+      "score": 0.8,
+      "keep": true,
+      "reason": "The current slide shows the completion of the main function with the addition of the 'now.print()' method call, which is a significant change from the last kept slide. This demonstrates the use of the print method, providing educational value by showing how the class's print function is utilized.",
+      "concept": "main function completion with print method usage"
+    },
+    {
+      "page": "0051_0:07:06.png",
+      "score": 0.3,
+      "keep": false,
+      "reason": "The current slide shows only minor formatting changes in the code output, with no new concepts or significant educational value added compared to the last kept slide.",
+      "concept": "minor code formatting change"
+    },
+    {
+      "page": "0052_0:07:11.png",
+      "score": 0.8,
+      "keep": true,
+      "reason": "The current slide shows a corrected error and the resulting output, which is different from the last kept slide. This provides educational value by demonstrating the process of debugging and verifying the correct output.",
+      "concept": "Error correction and output verification"
+    },
+    {
+      "page": "0053_0:07:23.png",
+      "score": 0.2,
+      "keep": false,
+      "reason": "The current slide shows only a minor formatting change with semicolons added to the print function. This does not introduce new concepts or significant educational value beyond the last kept slide.",
+      "concept": "Minor code formatting change"
+    },
+    {
+      "page": "0054_0:07:54.png",
+      "score": 0.3,
+      "keep": false,
+      "reason": "The current slide shows no significant changes or new information compared to the last kept slide. The code and terminal output are essentially the same, with no new educational value added.",
+      "concept": "No new concept"
+    },
+    {
+      "page": "0055_0:07:56.png",
+      "score": 0.2,
+      "keep": false,
+      "reason": "The current slide shows code and terminal output that are similar to previously kept content. There are no new concepts or significant changes introduced in this frame.",
+      "concept": "Redundant code and terminal output"
+    },
+    {
+      "page": "0056_0:07:58.png",
+      "score": 0.1,
+      "keep": false,
+      "reason": "This frame shows a class definition and constructor that have already been covered in previous slides. There is no new information or significant change from the last kept slide.",
+      "concept": "Class definition and constructor"
+    },
+    {
+      "page": "0057_0:08:17.png",
+      "score": 0.2,
+      "keep": false,
+      "reason": "The current slide shows a partial class definition and constructor, which has already been covered in previous slides. There is no new information or significant change from the last kept slide.",
+      "concept": "Class definition and constructor"
+    },
+    {
+      "page": "0058_0:08:46.png",
+      "score": 0.8,
+      "keep": true,
+      "reason": "Introduces a new method 'calculate_dp' in the class, which is a significant addition to the class structure.",
+      "concept": "calculate_dp method declaration"
+    },
+    {
+      "page": "0059_0:08:59.png",
+      "score": 0.3,
+      "keep": false,
+      "reason": "The current slide shows the opening of the calculate_dp method, but no new content or logic has been added since the last kept slide. It does not introduce any new concepts or significant changes.",
+      "concept": "calculate_dp method declaration"
+    },
+    {
+      "page": "0060_0:09:02.png",
+      "score": 0.8,
+      "keep": true,
+      "reason": "The 'calculate_dp' method now has a defined structure with opening and closing braces, indicating a logical stopping point and a new step in the code development process.",
+      "concept": "calculate_dp method structure"
+    },
+    {
+      "page": "0061_0:09:13.png",
+      "score": 0.2,
+      "keep": false,
+      "reason": "The code for the calculate_dp method is incomplete and actively being typed. It does not provide a complete or meaningful educational checkpoint.",
+      "concept": "calculate_dp method in progress"
+    },
+    {
+      "page": "0062_0:09:16.png",
+      "score": 0.3,
+      "keep": false,
+      "reason": "The code for the calculate_dp method is incomplete and actively being typed. It does not provide a complete or meaningful educational checkpoint.",
+      "concept": "calculate_dp method implementation in progress"
+    },
+    {
+      "page": "0063_0:09:18.png",
+      "score": 0.9,
+      "keep": true,
+      "reason": "The 'calculate_dp' method now contains a complete implementation, showing the calculation of 'dew_point'. This is a significant addition to the class functionality, demonstrating a key concept in the code.",
+      "concept": "calculate_dp method implementation"
+    },
+    {
+      "page": "0064_0:09:20.png",
+      "score": 0.0,
+      "keep": false,
+      "reason": "The current slide is identical to the last kept slide with no new content or changes.",
+      "concept": ""
+    },
+    {
+      "page": "0065_0:09:23.png",
+      "score": 0.0,
+      "keep": false,
+      "reason": "The current slide is identical to the last kept slide with no new content or changes. It shows the same code and terminal state, providing no additional educational value.",
+      "concept": ""
+    },
+    {
+      "page": "0066_0:09:26.png",
+      "score": 0.1,
+      "keep": false,
+      "reason": "The current slide is identical to the last kept slide with no new code or output. It does not introduce any new concepts or educational value.",
+      "concept": "No new concept"
+    },
+    {
+      "page": "0067_0:09:29.png",
+      "score": 0.0,
+      "keep": false,
+      "reason": "The current slide is identical to the last kept slide, showing no new information or changes. It should be discarded as it provides no additional educational value.",
+      "concept": ""
+    },
+    {
+      "page": "0068_0:09:44.png",
+      "score": 0.1,
+      "keep": false,
+      "reason": "The current slide shows a minor cursor movement within the 'calculate_dp' method, which does not introduce any new educational content or significant changes from the last kept slide.",
+      "concept": "calculate_dp method implementation"
+    },
+    {
+      "page": "0069_0:09:49.png",
+      "score": 0.3,
+      "keep": false,
+      "reason": "The change is minor, involving only the addition of 'this->' to 'temperature'. This does not introduce a new concept or significant educational value beyond the previous frame.",
+      "concept": "calculate_dp method adjustment"
+    },
+    {
+      "page": "0070_0:10:15.png",
+      "score": 0.8,
+      "keep": true,
+      "reason": "The 'calculate_dp' method has been updated to use 'this->' for member variables, which is a significant change in the code implementation.",
+      "concept": "calculate_dp method implementation"
+    },
+    {
+      "page": "0071_0:10:17.png",
+      "score": 0.2,
+      "keep": false,
+      "reason": "The current slide shows minor changes with the cursor in insert mode, indicating active typing. No new concepts or significant code changes are introduced compared to the last kept slide.",
+      "concept": "Constructor definition"
+    },
+    {
+      "page": "0072_0:10:30.png",
+      "score": 0.8,
+      "keep": true,
+      "reason": "The current slide shows a new addition to the constructor, specifically the call to the calculate_dp method, which is a significant change from the last kept slide. This demonstrates the integration of the method within the constructor, providing educational value.",
+      "concept": "Constructor implementation with calculate_dp call"
+    },
+    {
+      "page": "0073_0:10:32.png",
+      "score": 0.1,
+      "keep": false,
+      "reason": "The only change is a notification that the file has been written, which does not add educational value or new content beyond the last kept slide.",
+      "concept": "File save notification"
+    },
+    {
+      "page": "0074_0:10:53.png",
+      "score": 0.8,
+      "keep": true,
+      "reason": "The current slide introduces the implementation of the set_temperature method, which is a new concept not present in the last kept slide. This adds educational value by showing how to modify the temperature attribute.",
+      "concept": "set_temperature method implementation"
+    },
+    {
+      "page": "0075_0:10:55.png",
+      "score": 0.9,
+      "keep": true,
+      "reason": "The current slide shows the completion of the print function, which outputs the temperature, relative humidity, dew point, and description. This is a significant addition to the code, providing a complete implementation of the print functionality.",
+      "concept": "print function implementation"
+    },
+    {
+      "page": "0076_0:11:09.png",
+      "score": 0.2,
+      "keep": false,
+      "reason": "The current slide shows a compilation command in the terminal, but no new code or output is visible. The code on the left is identical to the last kept slide, and the compilation command alone does not add educational value.",
+      "concept": "Compilation command"
+    },
+    {
+      "page": "0077_0:11:15.png",
+      "score": 0.9,
+      "keep": true,
+      "reason": "This frame shows the execution of the program with the output in the terminal, verifying the functionality of the implemented code. It provides educational value by demonstrating the result of the code execution, which is a key learning point.",
+      "concept": "Program execution and output verification"
+    },
+    {
+      "page": "0078_0:11:43.png",
+      "score": 0.2,
+      "keep": false,
+      "reason": "The current slide shows a minor scroll with no new code or output changes. It is similar to the last kept slide and does not introduce any new educational content.",
+      "concept": "Minor scroll"
+    },
+    {
+      "page": "0079_0:11:45.png",
+      "score": 0.2,
+      "keep": false,
+      "reason": "The current slide shows content that has already been covered in previous frames, such as the constructor implementation and the calculate_dp method. There are no new concepts or significant changes introduced in this frame.",
+      "concept": "No new concept"
+    },
+    {
+      "page": "0080_0:13:08.png",
+      "score": 0.2,
+      "keep": false,
+      "reason": "The current slide does not introduce any new concepts or significant changes compared to the last kept slide. It shows the same code structure and output, offering no additional educational value.",
+      "concept": "No new concept"
+    }
+  ]
+}

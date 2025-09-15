@@ -1,0 +1,81 @@
+page_num,timestamp,seconds,page,keep2,score,student_concept
+1,0:00:00,0.0,0001_0:00:00.png,True,0.9,"This slide demonstrates the use of accessors and mutators in a C++ class. The 'Weather' class has private attributes and provides public methods to get and set the temperature, illustrating encapsulation."
+2,0:00:13,13.0,0002_0:00:13.png,,,
+3,0:00:15,15.0,0003_0:00:15.png,,,
+4,0:00:19,19.0,0004_0:00:19.png,,,
+5,0:00:21,21.0,0005_0:00:21.png,,,
+6,0:01:52,112.0,0006_0:01:52.png,,,
+7,0:02:11,131.0,0007_0:02:11.png,,,
+8,0:02:13,133.0,0008_0:02:13.png,,,
+9,0:02:47,167.0,0009_0:02:47.png,,,
+10,0:02:55,175.0,0010_0:02:55.png,,,
+11,0:02:59,179.0,0011_0:02:59.png,False,0.3,
+12,0:03:01,181.0,0012_0:03:01.png,,,
+13,0:03:04,184.0,0013_0:03:04.png,,,
+14,0:03:06,186.0,0014_0:03:06.png,,,
+15,0:03:08,188.0,0015_0:03:08.png,,,
+16,0:03:10,190.0,0016_0:03:10.png,False,0.4,
+17,0:03:25,205.0,0017_0:03:25.png,,,
+18,0:03:39,219.0,0018_0:03:39.png,,,
+19,0:04:03,243.0,0019_0:04:03.png,True,0.9,"This slide demonstrates the use of a constructor in the Weather class to initialize private attributes such as temperature, relative humidity, and description. It also shows accessor and mutator methods for managing these attributes."
+20,0:04:06,246.0,0020_0:04:06.png,,,
+21,0:04:08,248.0,0021_0:04:08.png,False,0.5,
+22,0:04:10,250.0,0022_0:04:10.png,False,0.5,
+23,0:04:16,256.0,0023_0:04:16.png,,,
+24,0:04:32,272.0,0024_0:04:32.png,True,0.9,This slide illustrates the instantiation of a 'Weather' object with specific values. It shows how to use the constructor to create an object and set its initial state.
+25,0:04:36,276.0,0025_0:04:36.png,,,
+26,0:04:42,282.0,0026_0:04:42.png,True,0.9,This slide demonstrates calling a function to print the weather details. It shows how to pass an object to a function and access its attributes using accessor methods.
+27,0:04:49,289.0,0027_0:04:49.png,True,0.9,"This slide demonstrates how to use accessor and mutator methods in a C++ class to manage private attributes. The 'get_temperature' method is an accessor that returns the temperature, while 'set_temperature' is a mutator that updates it. The 'print_weather' function shows how to output these values."
+28,0:04:51,291.0,0028_0:04:51.png,,,
+29,0:04:56,296.0,0029_0:04:56.png,,,
+30,0:05:05,305.0,0030_0:05:05.png,,,
+31,0:05:11,311.0,0031_0:05:11.png,,,
+32,0:05:44,344.0,0032_0:05:44.png,,,
+33,0:05:47,347.0,0033_0:05:47.png,False,0.3,
+34,0:05:49,349.0,0034_0:05:49.png,True,0.9,"This slide shows the complete implementation of the print_weather function, which outputs multiple attributes of a Weather object. It demonstrates how to access and print object attributes using accessor methods."
+35,0:05:51,351.0,0035_0:05:51.png,,,
+36,0:05:53,353.0,0036_0:05:53.png,,,
+37,0:05:55,355.0,0037_0:05:55.png,,,
+38,0:05:57,357.0,0038_0:05:57.png,,,
+39,0:05:59,359.0,0039_0:05:59.png,,,
+40,0:06:01,361.0,0040_0:06:01.png,,,
+41,0:06:18,378.0,0041_0:06:18.png,False,0.3,
+42,0:06:21,381.0,0042_0:06:21.png,,,
+43,0:06:24,384.0,0043_0:06:24.png,,,
+44,0:06:26,386.0,0044_0:06:26.png,,,
+45,0:06:30,390.0,0045_0:06:30.png,True,0.9,"This slide illustrates the use of a 'print' method within a C++ class to display object attributes. The method accesses private attributes directly using 'this' pointer, demonstrating encapsulation and object-oriented programming principles."
+46,0:06:33,393.0,0046_0:06:33.png,,,
+47,0:06:41,401.0,0047_0:06:41.png,,,
+48,0:06:43,403.0,0048_0:06:43.png,,,
+49,0:06:56,416.0,0049_0:06:56.png,,,
+50,0:07:01,421.0,0050_0:07:01.png,True,0.9,"This slide shows the final implementation of a C++ class with a 'print' method that outputs all attributes of the object. The 'main' function demonstrates creating an object and calling its methods, highlighting object instantiation and method invocation."
+51,0:07:06,426.0,0051_0:07:06.png,,,
+52,0:07:11,431.0,0052_0:07:11.png,True,0.9,"This slide shows the final implementation of the 'print' method, which accesses private attributes using 'this' pointer. It illustrates how encapsulation and method calls work together to manage and display object data."
+53,0:07:23,443.0,0053_0:07:23.png,,,
+54,0:07:54,474.0,0054_0:07:54.png,,,
+55,0:07:56,476.0,0055_0:07:56.png,,,
+56,0:07:58,478.0,0056_0:07:58.png,,,
+57,0:08:17,497.0,0057_0:08:17.png,,,
+58,0:08:46,526.0,0058_0:08:46.png,True,0.8,"This slide introduces a new private method 'calculate_dp' within the 'Weather' class. It highlights the concept of defining private helper methods to perform internal calculations, supporting encapsulation and modular design."
+59,0:08:59,539.0,0059_0:08:59.png,,,
+60,0:09:02,542.0,0060_0:09:02.png,False,0.4,
+61,0:09:13,553.0,0061_0:09:13.png,,,
+62,0:09:16,556.0,0062_0:09:16.png,,,
+63,0:09:18,558.0,0063_0:09:18.png,False,0.5,
+64,0:09:20,560.0,0064_0:09:20.png,,,
+65,0:09:23,563.0,0065_0:09:23.png,,,
+66,0:09:26,566.0,0066_0:09:26.png,,,
+67,0:09:29,569.0,0067_0:09:29.png,,,
+68,0:09:44,584.0,0068_0:09:44.png,,,
+69,0:09:49,589.0,0069_0:09:49.png,,,
+70,0:10:15,615.0,0070_0:10:15.png,True,0.9,"This slide demonstrates the implementation of the 'calculate_dp' method in the Weather class, which calculates the dew point by subtracting the relative humidity from the temperature. It shows how to use 'this' to access class attributes within a method."
+71,0:10:17,617.0,0071_0:10:17.png,,,
+72,0:10:30,630.0,0072_0:10:30.png,True,0.9,"This slide shows the integration of a private method call within the constructor of a class. By calling 'calculate_dp' in the constructor, it ensures that the dew point is calculated whenever a new object is instantiated, demonstrating the use of constructors to initialize object state."
+73,0:10:32,632.0,0073_0:10:32.png,,,
+74,0:10:53,653.0,0074_0:10:53.png,False,0.4,
+75,0:10:55,655.0,0075_0:10:55.png,True,1.0,"This slide shows the complete implementation of the Weather class, including a 'print' method that outputs the temperature, relative humidity, dew point, and description. It also includes a main function that creates a Weather object and calls the 'print' method, demonstrating object instantiation and method invocation."
+76,0:11:09,669.0,0076_0:11:09.png,,,
+77,0:11:15,675.0,0077_0:11:15.png,True,0.8,"This slide illustrates the execution of the Weather program, showing the compilation and running of the code. The output displays the temperature, relative humidity, dew point, and description, confirming the correct functionality of the 'print' method."
+78,0:11:43,703.0,0078_0:11:43.png,,,
+79,0:11:45,705.0,0079_0:11:45.png,,,
+80,0:13:08,788.483,0080_0:13:08.png,,,

@@ -1,0 +1,62 @@
+{
+  "slides_dir": "/home/janash/agents/videos/slides/week3/3.1_03_class_constructors",
+  "field": "student_concept",
+  "captions": [
+    {
+      "page": "0001_0:00:00.png",
+      "text": "This slide demonstrates the use of accessors and mutators in a C++ class. The 'Weather' class has private attributes and provides public methods to get and set the temperature, illustrating encapsulation."
+    },
+    {
+      "page": "0019_0:04:03.png",
+      "text": "This slide demonstrates the use of a constructor in the Weather class to initialize private attributes such as temperature, relative humidity, and description. It also shows accessor and mutator methods for managing these attributes."
+    },
+    {
+      "page": "0024_0:04:32.png",
+      "text": "This slide illustrates the instantiation of a 'Weather' object with specific values. It shows how to use the constructor to create an object and set its initial state."
+    },
+    {
+      "page": "0026_0:04:42.png",
+      "text": "This slide demonstrates calling a function to print the weather details. It shows how to pass an object to a function and access its attributes using accessor methods."
+    },
+    {
+      "page": "0027_0:04:49.png",
+      "text": "This slide demonstrates how to use accessor and mutator methods in a C++ class to manage private attributes. The 'get_temperature' method is an accessor that returns the temperature, while 'set_temperature' is a mutator that updates it. The 'print_weather' function shows how to output these values."
+    },
+    {
+      "page": "0034_0:05:49.png",
+      "text": "This slide shows the complete implementation of the print_weather function, which outputs multiple attributes of a Weather object. It demonstrates how to access and print object attributes using accessor methods."
+    },
+    {
+      "page": "0045_0:06:30.png",
+      "text": "This slide illustrates the use of a 'print' method within a C++ class to display object attributes. The method accesses private attributes directly using 'this' pointer, demonstrating encapsulation and object-oriented programming principles."
+    },
+    {
+      "page": "0050_0:07:01.png",
+      "text": "This slide shows the final implementation of a C++ class with a 'print' method that outputs all attributes of the object. The 'main' function demonstrates creating an object and calling its methods, highlighting object instantiation and method invocation."
+    },
+    {
+      "page": "0052_0:07:11.png",
+      "text": "This slide shows the final implementation of the 'print' method, which accesses private attributes using 'this' pointer. It illustrates how encapsulation and method calls work together to manage and display object data."
+    },
+    {
+      "page": "0058_0:08:46.png",
+      "text": "This slide introduces a new private method 'calculate_dp' within the 'Weather' class. It highlights the concept of defining private helper methods to perform internal calculations, supporting encapsulation and modular design."
+    },
+    {
+      "page": "0070_0:10:15.png",
+      "text": "This slide demonstrates the implementation of the 'calculate_dp' method in the Weather class, which calculates the dew point by subtracting the relative humidity from the temperature. It shows how to use 'this' to access class attributes within a method."
+    },
+    {
+      "page": "0072_0:10:30.png",
+      "text": "This slide shows the integration of a private method call within the constructor of a class. By calling 'calculate_dp' in the constructor, it ensures that the dew point is calculated whenever a new object is instantiated, demonstrating the use of constructors to initialize object state."
+    },
+    {
+      "page": "0075_0:10:55.png",
+      "text": "This slide shows the complete implementation of the Weather class, including a 'print' method that outputs the temperature, relative humidity, dew point, and description. It also includes a main function that creates a Weather object and calls the 'print' method, demonstrating object instantiation and method invocation."
+    },
+    {
+      "page": "0077_0:11:15.png",
+      "text": "This slide illustrates the execution of the Weather program, showing the compilation and running of the code. The output displays the temperature, relative humidity, dew point, and description, confirming the correct functionality of the 'print' method."
+    }
+  ]
+}
