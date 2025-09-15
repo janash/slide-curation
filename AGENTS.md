@@ -22,6 +22,9 @@ Current default practice
   - `conda run -n slides-ocr python tools/export_captions.py slides/<base> --field student_concept --out captions.json`
 - Annotate from captions (searchable text, below image):
   - `conda run -n slides-ocr python tools/annotate_from_captions.py slides/<base>/captions.json --out curated_annotated_from_captions.pdf`
+- Combine (module, optional if module spans multiple videos):
+  - `pdfunite slides/<week>/<module>_*/curated_annotated_from_captions.pdf slides/<week>/<module>/curated_annotated_from_captions.pdf`
+  - If `pdfunite` is unavailable, use pikepdf (see Combine guidance below).
 - Combine (week):
   - `pdfunite slides/<week>/*/curated_annotated_from_captions.pdf slides/<week>/curated_annotated_from_captions.pdf`
 
@@ -145,10 +148,24 @@ Documentation‑heavy lectures (docstrings)
   - `conda run -n slides-ocr python tools/annotate_from_captions.py slides/<base>/captions.json --out curated_annotated_from_captions.pdf`
 - Combine (week):
   - `pdfunite slides/<week>/*/curated_annotated_from_captions.pdf slides/<week>/curated_annotated_from_captions.pdf`
+  - Avoid double counting: if you created module‑level combined PDFs (e.g., `slides/<week>/<module>/curated_annotated_from_captions.pdf`), do not also include their constituent per‑video PDFs when building the week deck.
+  - Fallback when `pdfunite` is unavailable: combine with pikepdf in the conda env, for example:
+    - `conda run -n slides-ocr python - <<'PY'`
+    - `from pikepdf import Pdf; import glob; w=Pdf.new();`
+    - `parts=sorted(glob.glob('slides/<week>/*/curated_annotated_from_captions.pdf'))`
+    - `[w.pages.extend(Pdf.open(p).pages) for p in parts]; w.save('slides/<week>/curated_annotated_from_captions.pdf')`
+    - `PY`
 
 ## Make Targets
 
 - `make select-one BASE=<base> MODEL=gpt-4o`: Step 2 for a single deck (uses `OPENAI_API_KEY`). For compare‑last, run the script directly with flags shown above.
+
+## Batch Scripts
+
+- `tools/batch_week.sh <week>`: End‑to‑end pipeline for a week’s videos (extract → select → Pass 2 → captions → annotate) and then combine the week deck.
+  - Resumable: skips videos that already have `curated_annotated_from_captions.pdf`.
+  - Applies clean naming to per‑video folders and Step 1 PDFs.
+  - Requires `OPENAI_API_KEY` (load from `keys.env`).
 
 Ad‑hoc examples
 - Pass 2 review: `OPENAI_API_KEY=… LECTURE_REVIEW_PROMPT=prompts/kept_review.md conda run -n slides-ocr python tools/review_kept_slides.py slides/<base> --model gpt-4o --window 8 --stride 3 --threshold 1.0`
@@ -165,6 +182,14 @@ Ad‑hoc examples
 
 - Videos in repo root or `videos/<folder>/`. Outputs mirror under `slides/<folder>/`.
 - Filenames: lowercase, snake_case; two‑digit sequence (`_01`). Allowed: `[a-z0-9_\.]`.
+ - Clean names: strip vendor/junk suffixes (e.g., parenthetical encodings), nested extensions, and parentheses; keep only the semantic base.
+ - Normalize: lowercase; use underscores; collapse repeats; preserve numeric prefixes like `4.1`.
+- Zero‑pad single‑digit sequence segments to two digits (e.g., `_1_` → `_01_`, trailing `_1` → `_01`).
+- Apply consistently to per‑video folder names and Step 1 PDFs before selection/Pass 2.
+
+- Module vs video structure
+  - A module (e.g., `4.1_introspection`) can have multiple videos (e.g., `4.1_introspection_01_overview`, `4.1_introspection_02_builtins_help_type`, `4.1_introspection_03_builtins_isinstance_dir`).
+  - Keep per‑video outputs in their own cleaned folders; an optional module‑level combined annotated deck may live at `slides/<week>/<module>/curated_annotated_from_captions.pdf`.
 
 ## Environment & Keys
 
@@ -214,3 +239,7 @@ Troubleshooting & caveats (recent)
 - Makefile caveat: `combine-all` references `tools/combine_curated.py`, which may be absent. Prefer per‑video flow and week‑level outputs under `slides/<label>/` until that script is available (see `backup/tools/a11y/*` for references).
 - Long runs and sandboxes: long `conda run` operations can exceed interactive timeouts; check for created files (`rg`/`ls`) before retrying. Per‑deck re-runs are safe.
 - Parameter sanity: the Quick Checklist values worked well for week1 (`--scene 0.25 --fps 1.0 --hash 4 --min-gap 2.0 --max-candidates 150`). Adjust `--threshold` in Step 2 if selection is too sparse/dense.
+
+- Module aggregation: when a module spans multiple videos (e.g., `4.1_*`), you may create a module‑level annotated deck by combining the per‑video `curated_annotated_from_captions.pdf` files into `slides/<week>/<module>/curated_annotated_from_captions.pdf`.
+- Week aggregation: build `slides/<week>/curated_annotated_from_captions.pdf` from per‑video annotated PDFs; exclude module‑level combined PDFs to avoid duplicates.
+- If `pdfunite` is missing, combine with pikepdf inside the `slides-ocr` env (see Step 3 section for an example snippet).
