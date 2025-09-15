@@ -1,0 +1,23 @@
+name: slides-ocr
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip
+  # CLI tools and libraries
+  - ffmpeg
+  - poppler            # provides pdftotext/pdfseparate/pdfunite
+  - pikepdf>=8
+  - ocrmypdf
+  - qpdf               # ocrmypdf dependency
+  - ghostscript        # helpful for PDF processing
+  - pngquant           # optional image compression used by ocrmypdf
+  - tesseract
+  - pillow
+  - pandas
+  - numpy
+  - reportlab
+  - ripgrep            # used in docs/commands (rg)
+  - pip:
+      - openai
+      - img2pdf
