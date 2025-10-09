@@ -13,34 +13,34 @@ Current default practice
 
 ## Quick Checklist (Per Video / Folder)
 
-- Extract: `conda run -n slides-ocr python tools/extract_slides.py "<video>.mp4" --scene 0.25 --fps 1.0 --hash 4 --min-gap 2.0 --max-candidates 150 --outdir slides`
-- Verify: `slides/<base>/pages/` and `slides/<base>/index.csv` look correct.
-- Select (required): `OPENAI_API_KEY=… conda run -n slides-ocr python tools/slide_extract_tool.py slides/<base> --model gpt-4o --threshold 1.0 --policy code --compare-last --include-kept-concepts`
-- Inspect: `slides/<base>/curated.pdf` and `slides/<base>/significant.csv`.
-- Pass 2 (required): `OPENAI_API_KEY=… LECTURE_REVIEW_PROMPT=prompts/kept_review.md conda run -n slides-ocr python tools/review_kept_slides.py slides/<base> --model gpt-4o --window 8 --stride 3 --threshold 1.0` → `curated_v2.pdf`
+- Extract: `conda run -n slides-ocr python tools/extract_slides.py "videos/<week>/<video>.mp4" --scene 0.25 --fps 1.0 --hash 4 --min-gap 2.0 --max-candidates 150 --outdir slides/<week>`
+- Verify: `slides/<week>/<base>/pages/` and `slides/<week>/<base>/index.csv` look correct.
+- Select (required): `OPENAI_API_KEY=… conda run -n slides-ocr python tools/slide_extract_tool.py slides/<week>/<base> --model gpt-4o --threshold 1.0 --policy code --compare-last --include-kept-concepts`
+- Inspect: `slides/<week>/<base>/curated.pdf` and `slides/<week>/<base>/significant.csv`.
+- Pass 2 (required): `OPENAI_API_KEY=… LECTURE_REVIEW_PROMPT=prompts/kept_review.md conda run -n slides-ocr python tools/review_kept_slides.py slides/<week>/<base> --model gpt-4o --window 8 --stride 3 --threshold 1.0` → `curated_v2.pdf`
 - Export captions (ordered, Pass 2 keeps only):
-  - `conda run -n slides-ocr python tools/export_captions.py slides/<base> --field student_concept --out captions.json`
+  - `conda run -n slides-ocr python tools/export_captions.py slides/<week>/<base> --field student_concept --out captions.json`
 - Annotate from captions (searchable text, below image):
-  - `conda run -n slides-ocr python tools/annotate_from_captions.py slides/<base>/captions.json --out curated_annotated_from_captions.pdf`
+  - `conda run -n slides-ocr python tools/annotate_from_captions.py slides/<week>/<base>/captions.json --out curated_annotated_from_captions.pdf`
 - Combine (module, optional if module spans multiple videos):
-  - `pdfunite slides/<week>/<module>_*/curated_annotated_from_captions.pdf slides/<week>/<module>/curated_annotated_from_captions.pdf`
+  - `conda run -n slides-ocr pdfunite slides/<week>/<module>_*/curated_annotated_from_captions.pdf slides/<week>/<module>/curated_annotated_from_captions.pdf`
   - If `pdfunite` is unavailable, use pikepdf (see Combine guidance below).
 - Combine (week):
-  - `pdfunite slides/<week>/*/curated_annotated_from_captions.pdf slides/<week>/curated_annotated_from_captions.pdf`
+  - `conda run -n slides-ocr pdfunite slides/<week>/*/curated_annotated_from_captions.pdf slides/<week>/curated_annotated_from_captions.pdf`
 
 Outputs
-- Per‑video: `slides/<base>/curated.pdf`, `slides/<base>/curated_v2.pdf`, `slides/<base>/captions.json`, `slides/<base>/curated_annotated_from_captions.pdf`
+- Per‑video: `slides/<week>/<base>/curated.pdf`, `slides/<week>/<base>/curated_v2.pdf`, `slides/<week>/<base>/captions.json`, `slides/<week>/<base>/curated_annotated_from_captions.pdf`
 - Per‑week (combined annotated): `slides/<week>/curated_annotated_from_captions.pdf`
 
 ## Step 1 — Extraction (no LLM)
 
-- `conda run -n slides-ocr python tools/extract_slides.py "<video>.mp4" --scene 0.25 --fps 1.0 --hash 4 --min-gap 2.0 --max-candidates 150 --outdir slides`
-- Produces: `slides/<base>/pages/`, `slides/<base>/index.csv`, and `<base>.pdf` (kept pages). First frame always; last only if not duplicate.
+- `conda run -n slides-ocr python tools/extract_slides.py "videos/<week>/<video>.mp4" --scene 0.25 --fps 1.0 --hash 4 --min-gap 2.0 --max-candidates 150 --outdir slides/<week>`
+- Produces: `slides/<week>/<base>/pages/`, `slides/<week>/<base>/index.csv`, and `slides/<week>/<base>.pdf` (kept pages). First frame always; last only if not duplicate.
 
 ## Step 2 — Selection (LLM)
 
 - Prompt (default): `prompts/lecture_extraction.md` (set `LECTURE_EXTRACTION_PROMPT=...` to override)
-- Run (preferred): `conda run -n slides-ocr python tools/slide_extract_tool.py slides/<base> --model gpt-4o --threshold 1.0 --policy code --compare-last --include-kept-concepts`
+- Run (preferred): `conda run -n slides-ocr python tools/slide_extract_tool.py slides/<week>/<base> --model gpt-4o --threshold 1.0 --policy code --compare-last --include-kept-concepts`
 - For noisier code sessions: `--policy code_strict` to prefer only finished code (no mid-typing/partials/autocomplete/scroll noise), often with `--stride 3` and optional `--max-slides N`.
 - Produces: `significant.json`, `significant.csv`, `curated.pdf`
 - Batching: use `--start/--end` for long decks.
@@ -51,7 +51,7 @@ Preferred: duplicate‑resistant compare‑last mode
 - How it works: the model sees the LAST KEPT slide plus the CURRENT candidate and decides if the current adds meaningful new information. The prompt also includes a short running list of concepts already kept to avoid redundancy.
 - Recommended run (code decks):
   - `OPENAI_API_KEY=… LECTURE_EXTRACTION_PROMPT=prompts/lecture_extraction.md \
-     conda run -n slides-ocr python tools/slide_extract_tool.py slides/<base> --model gpt-4o --threshold 1.0 --policy code \
+     conda run -n slides-ocr python tools/slide_extract_tool.py slides/<week>/<base> --model gpt-4o --threshold 1.0 --policy code \
      --compare-last --include-kept-concepts`
 - Optional prefilter for split‑view terminals: skip frames whose output pane is unchanged vs last kept:
   - Add `--pane-dedupe --pane-side right --pane-frac 0.35 --pane-threshold 2` (adjust side/frac if your layout differs).
@@ -62,14 +62,14 @@ Preferred: duplicate‑resistant compare‑last mode
 Enhanced selection controls (what we learned)
 - New policy=doc: optimized for documentation lectures that include code, but should not keep typing/scroll frames. Prefers final, readable code/docstrings and section/summary slides; avoids partial/in‑progress content.
 - New policy=code_strict: for code-heavy lectures that must exclude incomplete code. Keeps only finished statements/blocks with balanced quotes/brackets; rejects partial tokens (e.g., 'qui', 'prin'), caret/cursor/selection frames, autocomplete popups, and tiny scroll changes.
-- Per‑deck selection hints: The selector will append `slides/<base>/selection_hint.md` (if present) to the prompt. Use it to specify lecture intent. Example contents for docstrings:
+- Per‑deck selection hints: The selector will append `slides/<week>/<base>/selection_hint.md` (if present) to the prompt. Use it to specify lecture intent. Example contents for docstrings:
   - “Keep only slides with finished Python docstrings where both opening and closing triple quotes are visible; avoid typing/caret frames, partial docstrings, fades/transitions, and tiny scrolls. Prefer the clearest final instance. Budget ~10 slides.”
 - Explicit keeps‑only: With `--threshold 1.0`, the tool now treats the run as “explicit keeps only,” ignoring score pass‑through. A page is kept only if the model sets `keep=true`.
 - Overlap: For dense content, use `--stride 3`. For a lighter pass (to reduce edge over‑keeping), `--stride 6` can help. Always keep `stride < window`.
 - Hard cap: Use `--max-slides N` to cap final keeps (e.g., 10) without a second pass.
 
 Hard rule
-- Do not build a week/course combined deck from Step 1 PDFs. First produce `slides/<base>/curated.pdf` (Step 2), then combine curated PDFs and OCR the combined result.
+- Do not build a week/course combined deck from Step 1 PDFs. First produce `slides/<week>/<base>/curated.pdf` (Step 2), then combine curated PDFs and OCR the combined result.
 
 ### significant.json and significant.csv (contract and behavior)
 
@@ -135,7 +135,7 @@ Documentation‑heavy lectures (docstrings)
 - Prompt: `prompts/kept_review.md` (or set `LECTURE_REVIEW_PROMPT=prompts/kept_review.md`). The prompt always keeps the title and section/divider slides, prefers final over partial states, and avoids near-duplicates.
 - Run:
   - `OPENAI_API_KEY=… LECTURE_REVIEW_PROMPT=prompts/kept_review.md \\
-     conda run -n slides-ocr python tools/review_kept_slides.py slides/<base> --model gpt-4o --window 8 --stride 3 --threshold 1.0`
+     conda run -n slides-ocr python tools/review_kept_slides.py slides/<week>/<base> --model gpt-4o --window 8 --stride 3 --threshold 1.0`
 - Produces:
   - `significant_v2.json`, `significant_v2.csv` (fields include `keep2` and `student_concept`)
   - `curated_v2.pdf` (final kept set after review)
@@ -143,11 +143,11 @@ Documentation‑heavy lectures (docstrings)
 ## Step 3 — Captions → Annotate (searchable)
 
 - Export captions (ordered, Pass 2 keeps only):
-  - `conda run -n slides-ocr python tools/export_captions.py slides/<base> --field student_concept --out captions.json`
+  - `conda run -n slides-ocr python tools/export_captions.py slides/<week>/<base> --field student_concept --out captions.json`
 - Annotate from captions (ReportLab, searchable text below image):
-  - `conda run -n slides-ocr python tools/annotate_from_captions.py slides/<base>/captions.json --out curated_annotated_from_captions.pdf`
+  - `conda run -n slides-ocr python tools/annotate_from_captions.py slides/<week>/<base>/captions.json --out curated_annotated_from_captions.pdf`
 - Combine (week):
-  - `pdfunite slides/<week>/*/curated_annotated_from_captions.pdf slides/<week>/curated_annotated_from_captions.pdf`
+  - `conda run -n slides-ocr pdfunite slides/<week>/*/curated_annotated_from_captions.pdf slides/<week>/curated_annotated_from_captions.pdf`
   - Avoid double counting: if you created module‑level combined PDFs (e.g., `slides/<week>/<module>/curated_annotated_from_captions.pdf`), do not also include their constituent per‑video PDFs when building the week deck.
   - Fallback when `pdfunite` is unavailable: combine with pikepdf in the conda env, for example:
     - `conda run -n slides-ocr python - <<'PY'`
@@ -162,15 +162,16 @@ Documentation‑heavy lectures (docstrings)
 
 ## Batch Scripts
 
-- `tools/batch_week.sh <week>`: End‑to‑end pipeline for a week’s videos (extract → select → Pass 2 → captions → annotate) and then combine the week deck.
+- `process_week<N>.sh`: End‑to‑end pipeline for a week's videos (extract → select → Pass 2 → captions → annotate) and then combine the week deck.
   - Resumable: skips videos that already have `curated_annotated_from_captions.pdf`.
-  - Applies clean naming to per‑video folders and Step 1 PDFs.
+  - Uses `--outdir slides/week<N>` for proper week-based folder structure.
   - Requires `OPENAI_API_KEY` (load from `keys.env`).
+  - Note: Ensure `pdfunite` commands use `conda run -n slides-ocr` prefix for proper environment access.
 
 Ad‑hoc examples
-- Pass 2 review: `OPENAI_API_KEY=… LECTURE_REVIEW_PROMPT=prompts/kept_review.md conda run -n slides-ocr python tools/review_kept_slides.py slides/<base> --model gpt-4o --window 8 --stride 3 --threshold 1.0`
-- Annotate v2 (student‑facing, below caption): `conda run -n slides-ocr python tools/annotate_slides.py slides/<base> --source v2 --concept-field student_concept --placement below --out curated_annotated_below_v2.pdf`
-- Combine annotated v2 for a week: `pdfunite slides/<week>/*/curated_annotated_below_v2.pdf slides/<week>/curated_annotated_below.pdf`
+- Pass 2 review: `OPENAI_API_KEY=… LECTURE_REVIEW_PROMPT=prompts/kept_review.md conda run -n slides-ocr python tools/review_kept_slides.py slides/<week>/<base> --model gpt-4o --window 8 --stride 3 --threshold 1.0`
+- Annotate v2 (student‑facing, below caption): `conda run -n slides-ocr python tools/annotate_slides.py slides/<week>/<base> --source v2 --concept-field student_concept --placement below --out curated_annotated_below_v2.pdf`
+- Combine annotated v2 for a week: `conda run -n slides-ocr pdfunite slides/<week>/*/curated_annotated_below_v2.pdf slides/<week>/curated_annotated_below.pdf`
 
 ## Build / Inspect
 
@@ -225,18 +226,18 @@ Troubleshooting & caveats (recent)
 ## Lessons Learned / Field Notes
 
 - Conda env: always run tools with `conda run -n slides-ocr ...` to ensure `ffmpeg`, `ocrmypdf`, `Pillow`, `pandas`, and dependencies are available.
-- Week grouping: for a weekly batch, pass `--outdir slides/week1` to Step 1 so outputs land in `slides/week1/<base>/...`.
-- Step 1 PDF location: the extractor writes a kept-pages PDF as `slides/<label>/<base>.pdf` (sibling to `<base>/`), while later steps write into `slides/<label>/<base>/` (e.g., `curated.pdf`). This is expected.
+- Week grouping: always pass `--outdir slides/week<N>` to Step 1 so outputs land in `slides/week<N>/<base>/...`.
+- Step 1 PDF location: the extractor writes a kept-pages PDF as `slides/<week>/<base>.pdf` (sibling to `<base>/`), while later steps write into `slides/<week>/<base>/` (e.g., `curated.pdf`). This is expected.
 - Keys file: current `keys.env` can contain only the raw key (one line). Load with `export OPENAI_API_KEY=$(cat keys.env)`; avoid printing or committing the key.
 - Step 2 execution (preferred overall):
-  - `OPENAI_API_KEY=… LECTURE_EXTRACTION_PROMPT=prompts/lecture_extraction_2.md \
-     conda run -n slides-ocr python tools/slide_extract_tool.py slides/<label>/<base> --model gpt-4o --threshold 1.0 --policy code --compare-last --include-kept-concepts`
+  - `OPENAI_API_KEY=… LECTURE_EXTRACTION_PROMPT=prompts/lecture_extraction.md \
+     conda run -n slides-ocr python tools/slide_extract_tool.py slides/<week>/<base> --model gpt-4o --threshold 1.0 --policy code --compare-last --include-kept-concepts`
   - Optional split‑view prefilter: append `--pane-dedupe --pane-side right --pane-frac 0.35 --pane-threshold 2`.
   - Outputs: `significant.json`, `significant.csv`, `curated.pdf` under the per‑video folder.
   - For documentation decks, consider `--policy doc` and an intent `selection_hint.md`.
-- Verifying Step 2: `rg --files -g "slides/<label>/**/significant.*"` and `rg --files -g "slides/<label>/**/curated.pdf"` should show one set per deck.
-- OCR at scale: `conda run -n slides-ocr python tools/ocr_only.py slides/<label> --all` creates `curated_ocr.pdf` inside each `slides/<label>/<base>/`. The command is idempotent; rerunning replaces or reuses outputs.
-- Makefile caveat: `combine-all` references `tools/combine_curated.py`, which may be absent. Prefer per‑video flow and week‑level outputs under `slides/<label>/` until that script is available (see `backup/tools/a11y/*` for references).
+- Verifying Step 2: `rg --files -g "slides/<week>/**/significant.*"` and `rg --files -g "slides/<week>/**/curated.pdf"` should show one set per deck.
+- OCR at scale: `conda run -n slides-ocr python tools/ocr_only.py slides/<week> --all` creates `curated_ocr.pdf` inside each `slides/<week>/<base>/`. The command is idempotent; rerunning replaces or reuses outputs.
+- Makefile caveat: `combine-all` references `tools/combine_curated.py`, which may be absent. Prefer per‑video flow and week‑level outputs under `slides/<week>/` until that script is available (see `backup/tools/a11y/*` for references).
 - Long runs and sandboxes: long `conda run` operations can exceed interactive timeouts; check for created files (`rg`/`ls`) before retrying. Per‑deck re-runs are safe.
 - Parameter sanity: the Quick Checklist values worked well for week1 (`--scene 0.25 --fps 1.0 --hash 4 --min-gap 2.0 --max-candidates 150`). Adjust `--threshold` in Step 2 if selection is too sparse/dense.
 
