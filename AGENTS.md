@@ -11,6 +11,12 @@ Current default practice
 - Documentation‑centric decks (e.g., writing docstrings): use policy=doc plus a per‑deck selection hint to keep only finished docstrings and section/summary slides, avoiding typing/fades. Cap to ~8–10 slides where appropriate.
 <!-- Accessibility/tagging content removed for now -->
 
+### Selection hints & custom prompts (non-code videos)
+- **Always ask the user what kind of video they are processing before Step 2.** Gather enough detail to describe what “meaningful change” looks like (e.g., UI demos, art apps, craft tutorials). If their answer is unclear, follow up with specific clarifying questions until you understand what actions/visual cues matter.
+- **Write `selection_hint.md`** in the per-video folder to capture those rules. Focus on what to keep, what to drop, and which visual cues or terminology matter. Examples live in `docs/selection_strategies.md`.
+- **Customize Pass 2 prompts when needed.** Clone `prompts/kept_review.md`, adjust the wording so `student_concept` explains the exact actions (button clicks, folds, tool settings), and point `LECTURE_REVIEW_PROMPT` to the custom file. Re-run captions/annotation after Pass 2.
+- Use unique filenames when you maintain multiple policy variants (e.g., `_doc`, `_demo`) so the user can compare results.
+
 ## Quick Checklist (Per Video / Folder)
 
 - Extract: `conda run -n slides-ocr python tools/extract_slides.py "videos/<week>/<video>.mp4" --scene 0.25 --fps 1.0 --hash 4 --min-gap 2.0 --max-candidates 150 --outdir slides/<week>`

@@ -1,6 +1,8 @@
 name: slides-ocr
 channels:
   - conda-forge
+  - nodefaults
+channel_priority: strict
 dependencies:
   - python=3.11
   - pip

@@ -27,3 +27,7 @@ The agent will handle the complete pipeline: extract frames → select meaningfu
 ## Manual Usage
 
 If you prefer to run commands manually, see `AGENTS.md` for the complete pipeline documentation.
+
+## Domain-Specific Decks
+
+For non-code demos (Blender, origami, design tools), add a `selection_hint.md` and clone the Pass 2 prompt so the LLM focuses on actionable steps instead of code diffs. See `docs/selection_strategies.md` for examples, naming tips, and the checklist we follow when creating variant decks.
